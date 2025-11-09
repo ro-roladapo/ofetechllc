@@ -1,0 +1,1413 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ofetech LLC | Database & Software Services</title>
+  <meta name="description" content="Ofetech LLC in Raleigh, North Carolina specializes in MySQL, PostgreSQL, MongoDB, and Oracle database services and support." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #070b1f;
+      --card-bg: #0b1024;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59, 130, 246, 0.15);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.25);
+      --radius-xl: 1.25rem;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom,
+        rgba(2, 6, 23, 0.95),
+        rgba(2, 6, 23, 0.75),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 0;
+    }
+
+    .logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #60a5fa, #1d4ed8 45%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.65);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-mark::before {
+      content: "";
+      position: absolute;
+      width: 140%;
+      height: 140%;
+      background: conic-gradient(from 220deg, rgba(59,130,246,0.3), transparent, rgba(129,140,248,0.6), transparent);
+      opacity: 0.6;
+    }
+
+    .logo-mark span {
+      position: relative;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 0.9rem;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text strong {
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .logo-text span {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      position: relative;
+      padding-bottom: 0.15rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--text);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.1rem;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #60a5fa, #a855f7);
+      transition: width 0.18s ease-out;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.4rem 0.95rem;
+      font-size: 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(96, 165, 250, 0.45);
+      background: radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.25), rgba(15, 23, 42, 0.95));
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.55);
+      color: var(--text);
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .nav-cta span.icon {
+      font-size: 1rem;
+    }
+
+    /* Mobile nav */
+    .nav-toggle {
+      display: none;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 999px;
+      padding: 0.35rem 0.65rem;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      position: relative;
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: #e5e7eb;
+    }
+
+    .nav-toggle span::before {
+      top: -5px;
+    }
+
+    .nav-toggle span::after {
+      top: 5px;
+    }
+
+    .nav-links-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 0.75rem 0 1rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links-mobile a {
+      color: var(--muted);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 3.5rem 0 3rem;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 3.25rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.15);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 4vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero h1 span.accent {
+      background: linear-gradient(to right, #60a5fa, #a855f7, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      max-width: 540px;
+      color: var(--muted);
+      margin-bottom: 1.3rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-badge {
+      padding: 0.16rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--muted);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #0f172a;
+      background: radial-gradient(circle at 0 0, #93c5fd, #3b82f6 40%, #2563eb 80%);
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.6);
+    }
+
+    .btn-primary span.icon {
+      font-size: 1.1rem;
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.7rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(15, 23, 42, 0.75);
+      color: var(--muted);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .trust-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .trust-text strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-card {
+      position: relative;
+      padding: 1.4rem 1.3rem;
+      border-radius: 1.5rem;
+      background: radial-gradient(circle at 0 0, rgba(59,130,246,0.2), rgba(15,23,42,0.95));
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      min-height: 260px;
+    }
+
+    .hero-card-glow {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(59,130,246,0.3), transparent 55%),
+        radial-gradient(circle at 80% 0%, rgba(168,85,247,0.2), transparent 55%),
+        radial-gradient(circle at 50% 100%, rgba(56,189,248,0.18), transparent 55%);
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .hero-card-main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .hero-chip {
+      font-size: 0.75rem;
+      padding: 0.24rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--muted);
+    }
+
+    .hero-signal {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      color: #bbf7d0;
+    }
+
+    .hero-signal-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .metric-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 0.9rem;
+      padding: 0.6rem 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+    }
+
+    .metric-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .metric-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .metric-tag {
+      font-size: 0.7rem;
+      color: #a5b4fc;
+    }
+
+    .hero-status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .status-pill {
+      font-size: 0.75rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      color: var(--muted);
+    }
+
+    .status-pill span {
+      color: #bbf7d0;
+      font-weight: 500;
+    }
+
+    .hero-mini-chart {
+      margin-top: 0.4rem;
+      width: 100%;
+      height: 60px;
+      border-radius: 0.8rem;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.28), rgba(16, 185, 129, 0.38));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-mini-chart::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.25;
+      background-image: linear-gradient(to right, rgba(15,23,42,0.7) 1px, transparent 1px),
+        linear-gradient(to top, rgba(15,23,42,0.7) 1px, transparent 1px);
+      background-size: 14px 12px;
+    }
+
+    /* Sections */
+    section {
+      padding: 3.25rem 0 2.5rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.75rem;
+    }
+
+    .section-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.1rem;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      padding: 1.1rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.8);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.25), transparent 50%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .service-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .service-title {
+      font-size: 0.98rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .service-text {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .service-tag {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.45);
+      color: var(--muted);
+    }
+
+    /* Supported stacks */
+    .stacks-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.1rem;
+    }
+
+    .stack-card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 1.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 1rem 0.95rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
+    }
+
+    .stack-header {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .stack-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .stack-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    .stack-badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+      display: inline-block;
+    }
+
+    .stack-text {
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .stack-meta {
+      font-size: 0.75rem;
+      color: #a5b4fc;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.4rem;
+      align-items: flex-start;
+    }
+
+    .about-text p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .about-highlight {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 1rem;
+      padding: 0.7rem 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      text-align: left;
+    }
+
+    .about-highlight strong {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .about-highlight span {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .about-card {
+      background: var(--card-bg);
+      border-radius: 1.3rem;
+      border: 1px solid var(--border-subtle);
+      padding: 1.05rem 1rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .about-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .about-list {
+      list-style: none;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .about-list li {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .about-list li span.bullet {
+      font-size: 0.9rem;
+      color: #4ade80;
+      margin-top: 0.1rem;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 2.2rem;
+      align-items: stretch;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border-radius: 1.3rem;
+      border: 1px solid var(--border-subtle);
+      padding: 1.2rem 1.1rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .contact-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .field label {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .field input,
+    .field textarea {
+      border-radius: 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 0.55rem 0.75rem;
+      font-size: 0.9rem;
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text);
+      outline: none;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.7);
+    }
+
+    .field textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .contact-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .contact-meta a.link {
+      color: #60a5fa;
+    }
+
+    .contact-details {
+      display: grid;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .contact-details-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.18rem;
+    }
+
+    .contact-details-row span.label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #6b7280;
+    }
+
+    .contact-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.35rem;
+    }
+
+    .contact-pill {
+      font-size: 0.78rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+    }
+
+    /* Footer */
+    footer {
+      padding: 1.3rem 0 1.6rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.25);
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .stacks-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .hero {
+        padding-top: 2.3rem;
+      }
+
+      section {
+        padding: 2.4rem 0 2rem;
+      }
+
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .stacks-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .about-highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .about-highlights {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-cta-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-primary,
+      .btn-ghost {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="container">
+        <nav class="nav">
+          <a href="#top" class="logo-wrap">
+            <div class="logo-mark">
+              <span>OF</span>
+            </div>
+            <div class="logo-text">
+              <strong>Ofetech LLC</strong>
+              <span>Database &amp; Software Services</span>
+            </div>
+          </a>
+
+          <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#stacks">Stacks</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+              <span class="icon">⚡</span>
+              <span>Book a DB Consult</span>
+            </button>
+          </div>
+
+          <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleMobileNav()">
+            <span></span>
+          </button>
+        </nav>
+
+        <div id="nav-mobile" class="nav-links-mobile">
+          <a href="#services" onclick="toggleMobileNav()">Services</a>
+          <a href="#stacks" onclick="toggleMobileNav()">Stacks</a>
+          <a href="#about" onclick="toggleMobileNav()">About</a>
+          <a href="#contact" onclick="toggleMobileNav()">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-inner">
+            <div>
+              <div class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                <span>Database &amp; software support based in Raleigh, North Carolina</span>
+              </div>
+
+              <h1>
+                Expert <span class="accent">database services</span><br />
+                for teams that can’t afford downtime.
+              </h1>
+
+              <p class="hero-subtitle">
+                Ofetech LLC specializes in MySQL, PostgreSQL, MongoDB, and Oracle—designing, tuning, and supporting
+                mission-critical databases so your applications stay fast, reliable, and secure.
+              </p>
+
+              <div class="hero-badges">
+                <span class="hero-badge">MySQL • PostgreSQL • MongoDB • Oracle</span>
+                <span class="hero-badge">Performance &amp; High Availability</span>
+                <span class="hero-badge">Production Support &amp; Monitoring</span>
+              </div>
+
+              <div class="hero-cta-row">
+                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                  <span>Schedule a database review</span>
+                  <span class="icon">→</span>
+                </button>
+
+                <button class="btn-ghost" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+                  <span>View services</span>
+                </button>
+              </div>
+
+              <p class="trust-text">
+                <strong>Typical results:</strong> faster queries, fewer incidents, and clear backup &amp; recovery plans.
+              </p>
+            </div>
+
+            <div class="hero-visual">
+              <div class="hero-card">
+                <div class="hero-card-glow"></div>
+                <div class="hero-card-main">
+                  <div class="hero-card-header">
+                    <div class="hero-chip">Ofetech DB Console</div>
+                    <div class="hero-signal">
+                      <span class="hero-signal-dot"></span>
+                      <span>Clusters healthy</span>
+                    </div>
+                  </div>
+
+                  <div class="hero-metrics">
+                    <div class="metric-card">
+                      <div class="metric-label">Average query latency</div>
+                      <div class="metric-value">&lt; 20 ms</div>
+                      <div class="metric-tag">Optimized workloads</div>
+                    </div>
+                    <div class="metric-card">
+                      <div class="metric-label">DB uptime</div>
+                      <div class="metric-value">99.99%</div>
+                      <div class="metric-tag">HA &amp; replication</div>
+                    </div>
+                    <div class="metric-card">
+                      <div class="metric-label">Incidents reduced</div>
+                      <div class="metric-value">-40%</div>
+                      <div class="metric-tag">Proactive monitoring</div>
+                    </div>
+                  </div>
+
+                  <div class="hero-status-row">
+                    <div class="status-pill">
+                      Active focus: <span>MySQL, PostgreSQL, MongoDB, Oracle support</span>
+                    </div>
+                  </div>
+
+                  <div class="hero-mini-chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section id="services">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Services</div>
+            <h2 class="section-title">Database &amp; software services from Ofetech LLC</h2>
+            <p class="section-subtitle">
+              We design, tune, and support your data layer so your applications can grow with confidence.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <!-- Service 1 -->
+            <article class="service-card">
+              <div class="service-card-inner">
+                <div class="service-icon">🗄️</div>
+                <h3 class="service-title">Database Design &amp; Architecture</h3>
+                <p class="service-text">
+                  Schema design, indexing strategy, and architecture reviews for MySQL, PostgreSQL, MongoDB, and Oracle
+                  to keep your data structured, scalable, and easy to maintain.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag">MySQL / PostgreSQL</span>
+                  <span class="service-tag">MongoDB / Oracle</span>
+                  <span class="service-tag">Schema &amp; indexing</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Service 2 -->
+            <article class="service-card">
+              <div class="service-card-inner">
+                <div class="service-icon">⚙️</div>
+                <h3 class="service-title">Performance Tuning &amp; Troubleshooting</h3>
+                <p class="service-text">
+                  Deep-dive analysis of slow queries, locking issues, CPU/IO hotspots, and resource bottlenecks—followed
+                  by concrete tuning actions and best practices.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag">Query optimization</span>
+                  <span class="service-tag">Index tuning</span>
+                  <span class="service-tag">Health checks</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Service 3 -->
+            <article class="service-card">
+              <div class="service-card-inner">
+                <div class="service-icon">☁️</div>
+                <h3 class="service-title">Cloud &amp; Migration Support</h3>
+                <p class="service-text">
+                  Plan and execute safe migrations to cloud platforms and managed services—without losing data or
+                  disrupting your users.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag">Lift &amp; shift</span>
+                  <span class="service-tag">Managed DBs</span>
+                  <span class="service-tag">Minimal downtime</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Service 4 -->
+            <article class="service-card">
+              <div class="service-card-inner">
+                <div class="service-icon">🛡️</div>
+                <h3 class="service-title">Support, Backup &amp; Monitoring</h3>
+                <p class="service-text">
+                  Ongoing support, backup and recovery planning, and monitoring setup so you always know the health of
+                  your databases and can recover quickly.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag">Production support</span>
+                  <span class="service-tag">Backup &amp; DR</span>
+                  <span class="service-tag">Monitoring &amp; alerts</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Supported Stacks -->
+      <section id="stacks">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Supported stacks</div>
+            <h2 class="section-title">Databases that Ofetech works with every day</h2>
+            <p class="section-subtitle">
+              From relational to document databases, we support the core engines that power modern applications.
+            </p>
+          </div>
+
+          <div class="stacks-grid">
+            <!-- MySQL -->
+            <article class="stack-card">
+              <div class="stack-header">
+                <div class="stack-icon">🐬</div>
+                <div class="stack-title">MySQL</div>
+              </div>
+              <div class="stack-badge">Transactional workloads &amp; web apps</div>
+              <p class="stack-text">
+                Design, tuning, and high availability for MySQL on-prem or in the cloud (including managed services like
+                Amazon RDS and Aurora MySQL).
+              </p>
+              <p class="stack-meta">
+                Typical work: slow query tuning, replication, backups, upgrades, HA.
+              </p>
+            </article>
+
+            <!-- PostgreSQL -->
+            <article class="stack-card">
+              <div class="stack-header">
+                <div class="stack-icon">🐘</div>
+                <div class="stack-title">PostgreSQL</div>
+              </div>
+              <div class="stack-badge">Advanced SQL &amp; analytics</div>
+              <p class="stack-text">
+                Schema design, indexing, and performance work for PostgreSQL, including streaming replication,
+                read scaling, and observability.
+              </p>
+              <p class="stack-meta">
+                Typical work: query plans, partitioning, replication, monitoring.
+              </p>
+            </article>
+
+            <!-- MongoDB -->
+            <article class="stack-card">
+              <div class="stack-header">
+                <div class="stack-icon">🍃</div>
+                <div class="stack-title">MongoDB</div>
+              </div>
+              <div class="stack-badge">Document &amp; JSON workloads</div>
+              <p class="stack-text">
+                Collection design, indexing strategies, and scaling support for MongoDB, both self-hosted and Atlas.
+              </p>
+              <p class="stack-meta">
+                Typical work: schema design, index audits, replica sets, sharding guidance.
+              </p>
+            </article>
+
+            <!-- Oracle -->
+            <article class="stack-card">
+              <div class="stack-header">
+                <div class="stack-icon">🏛️</div>
+                <div class="stack-title">Oracle Database</div>
+              </div>
+              <div class="stack-badge">Enterprise &amp; legacy systems</div>
+              <p class="stack-text">
+                Support for Oracle-based systems, from performance review and query tuning to upgrade planning and
+                migration paths when needed.
+              </p>
+              <p class="stack-meta">
+                Typical work: SQL tuning, resource usage review, modernization planning.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">About</div>
+            <h2 class="section-title">Raleigh-based database partner you can rely on</h2>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-text">
+              <p>
+                Ofetech LLC was created to help businesses treat their databases like the critical systems they are.
+                We combine hands-on experience with MySQL, PostgreSQL, MongoDB, and Oracle to keep your data tier stable,
+                secure, and predictable.
+              </p>
+              <p>
+                Whether you’re dealing with slow queries, planning a migration, or just need a clear backup and recovery
+                strategy, we meet you where you are and help you move forward with confidence.
+              </p>
+
+              <div class="about-highlights">
+                <div class="about-highlight">
+                  <strong>Database-first mindset</strong>
+                  <span>We start with data integrity, safety, and performance.</span>
+                </div>
+                <div class="about-highlight">
+                  <strong>Production experience</strong>
+                  <span>Real-world tuning and incident response, not just theory.</span>
+                </div>
+                <div class="about-highlight">
+                  <strong>Clear communication</strong>
+                  <span>Plain-language explanations and actionable recommendations.</span>
+                </div>
+              </div>
+            </div>
+
+            <aside class="about-card">
+              <h3>How we typically work</h3>
+              <ul class="about-list">
+                <li>
+                  <span class="bullet">✔</span>
+                  <span>Short discovery call to understand your stack, pain points, and timelines.</span>
+                </li>
+                <li>
+                  <span class="bullet">✔</span>
+                  <span>Targeted assessment of your databases, queries, and infrastructure.</span>
+                </li>
+                <li>
+                  <span class="bullet">✔</span>
+                  <span>Written findings with prioritized fixes and clear next steps.</span>
+                </li>
+                <li>
+                  <span class="bullet">✔</span>
+                  <span>Hands-on implementation and ongoing support if you’d like a long-term partner.</span>
+                </li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Contact</div>
+            <h2 class="section-title">Let’s talk about your databases</h2>
+            <p class="section-subtitle">
+              Share a bit about your environment and issues. We’ll follow up with next steps and options for working together.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h3>Send a message</h3>
+              <p>
+                This form is a front-end example. Connect it to your email service, form backend, or CRM of choice.
+              </p>
+
+              <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" placeholder="Your full name" required />
+                </div>
+
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="you@company.com" required />
+                </div>
+
+                <div class="field">
+                  <label for="company">Company (optional)</label>
+                  <input id="company" name="company" type="text" placeholder="Company name" />
+                </div>
+
+                <div class="field">
+                  <label for="message">What can we help you with?</label>
+                  <textarea id="message" name="message" placeholder="Example: MySQL production cluster, slow queries, migration plans, backups, etc." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                  <span>Submit inquiry</span>
+                  <span class="icon">↗</span>
+                </button>
+
+                <p class="contact-meta">
+                  Prefer email? Reach out at
+                  <a href="mailto:ofetech1@gmail.com" class="link">ofetech1@gmail.com</a>.
+                </p>
+              </form>
+            </div>
+
+            <div class="contact-details">
+              <div class="contact-details-row">
+                <span class="label">Email</span>
+                <span>ofetech1@gmail.com</span>
+              </div>
+
+              <div class="contact-details-row">
+                <span class="label">Phone</span>
+                <span>(862) 213-7889</span>
+              </div>
+
+              <div class="contact-details-row">
+                <span class="label">Location</span>
+                <span>Raleigh, North Carolina</span>
+              </div>
+
+              <div class="contact-details-row">
+                <span class="label">Typical engagements</span>
+                <div class="contact-pill-row">
+                  <div class="contact-pill">Database health checks</div>
+                  <div class="contact-pill">Performance tuning projects</div>
+                  <div class="contact-pill">Migration &amp; upgrade support</div>
+                  <div class="contact-pill">Ongoing DB support</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <span>© <span id="year"></span> Ofetech LLC, Raleigh, North Carolina. All rights reserved.</span>
+          <div class="footer-links">
+            <a href="#top">Back to top</a>
+            <a href="#services">Services</a>
+            <a href="#stacks">Stacks</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function toggleMobileNav() {
+      const el = document.getElementById("nav-mobile");
+      if (!el) return;
+      const isOpen = el.style.display === "flex";
+      el.style.display = isOpen ? "none" : "flex";
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert("Form submitted. Connect this to your backend or email service (e.g., send to ofetech1@gmail.com).");
+    }
+  </script>
+</body>
+</html>
