@@ -1320,10 +1320,9 @@ html
   class="contact-form"
   action="https://formspree.io/f/mkgkwvjv"
   method="POST"
-  
+>  
   <input type="hidden" name="_redirect" value="https://ofetech.com#contact" />
   
->
   <div class="field">
     <label for="name">Name</label>
     <input id="name" name="name" type="text" placeholder="Your full name" required />
@@ -1403,6 +1402,7 @@ html
     </footer>
   </div>
 
+  
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -1413,10 +1413,35 @@ html
       el.style.display = isOpen ? "none" : "flex";
     }
 
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      alert("Form submitted. Connect this to your backend or email service (e.g., send to ofetech1@gmail.com).");
+    // Handle contact form with AJAX to avoid redirecting to Formspree's page
+    const contactForm = document.querySelector(".contact-form");
+
+    if (contactForm) {
+      contactForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(contactForm);
+
+        try {
+          const response = await fetch(contactForm.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" }
+          });
+
+          if (response.ok) {
+            contactForm.reset();
+            alert("Thanks! Your message was sent successfully.");
+          } else {
+            alert("Something went wrong sending your message. Please try again or email ofetech1@gmail.com.");
+          }
+        } catch (err) {
+          alert("Network error. Please try again or email ofetech1@gmail.com.");
+        }
+      });
     }
   </script>
+
 </body>
 </html>
+
