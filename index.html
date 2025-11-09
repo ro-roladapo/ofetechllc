@@ -1315,37 +1315,43 @@ html
                 This form is a front-end example. Connect it to your email service, form backend, or CRM of choice.
               </p>
 
-              <form class="contact-form" onsubmit="handleFormSubmit(event)">
-                <div class="field">
-                  <label for="name">Name</label>
-                  <input id="name" name="name" type="text" placeholder="Your full name" required />
-                </div>
+              
+<form
+  class="contact-form"
+  action="https://formspree.io/f/mkgkwvjv"
+  method="POST"
+>
+  <div class="field">
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" placeholder="Your full name" required />
+  </div>
 
-                <div class="field">
-                  <label for="email">Email</label>
-                  <input id="email" name="email" type="email" placeholder="you@company.com" required />
-                </div>
+  <div class="field">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" placeholder="you@company.com" required />
+  </div>
 
-                <div class="field">
-                  <label for="company">Company (optional)</label>
-                  <input id="company" name="company" type="text" placeholder="Company name" />
-                </div>
+  <div class="field">
+    <label for="company">Company (optional)</label>
+    <input id="company" name="company" type="text" placeholder="Company name" />
+  </div>
 
-                <div class="field">
-                  <label for="message">What can we help you with?</label>
-                  <textarea id="message" name="message" placeholder="Example: MySQL production cluster, slow queries, migration plans, backups, etc." required></textarea>
-                </div>
+  <div class="field">
+    <label for="message">What can we help you with?</label>
+    <textarea id="message" name="message" placeholder="Example: MySQL production cluster, slow queries, migration plans, backups, etc." required></textarea>
+  </div>
 
-                <button type="submit" class="btn-primary">
-                  <span>Submit inquiry</span>
-                  <span class="icon">↗</span>
-                </button>
+  <button type="submit" class="btn-primary">
+    <span>Submit inquiry</span>
+    <span class="icon">↗</span>
+  </button>
 
-                <p class="contact-meta">
-                  Prefer email? Reach out at
-                  <a href="mailto:ofetech1@gmail.com" class="link">ofetech1@gmail.com</a>.
-                </p>
-              </form>
+  <p class="contact-meta">
+    Prefer email? Reach out at
+    <a href="mailto:ofetech1@gmail.com" class="link">ofetech1@gmail.com</a>.
+  </p>
+</form>
+
             </div>
 
             <div class="contact-details">
